@@ -1,43 +1,61 @@
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #1a2a1a; margin: 0; padding: 0; overflow: hidden; }
+  body { overflow: hidden; }
   .game-screen {
     width: 100vw; height: 100vh;
-    background: linear-gradient(180deg, #87CEEB 0%, #98D4A3 40%, #4a7c59 70%, #2d5a27 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    position: relative;
+    position: relative; overflow: hidden;
   }
-  .logo-main { font-family: 'Press Start 2P', monospace; font-size: 42px; color: #e74c3c; text-shadow: 4px 4px 0 #8b0000; letter-spacing: 4px; text-align: center; }
-  .logo-main span { color: #fff; text-shadow: 4px 4px 0 #555; }
-  .logo-sub { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a8d8a8; margin-top: 8px; letter-spacing: 2px; text-align: center; }
-  .fox { font-size: 64px; margin: 20px 0; animation: foxFloat 3s ease-in-out infinite; }
-  @keyframes foxFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .menu { display: flex; flex-direction: column; gap: 12px; width: 280px; margin-top: 16px; }
-  .btn-pixel {
-    display: block; padding: 14px 20px;
-    font-family: 'Press Start 2P', monospace; font-size: 11px;
-    text-align: center; text-decoration: none; color: #fff;
-    background: #8b6914;
-    border-top: 4px solid #c8a020; border-left: 4px solid #c8a020;
-    border-right: 4px solid #5a4008; border-bottom: 4px solid #5a4008;
+  .bg {
+    width: 100%; height: 100%;
+    background-image: url('<%= asset_path("rubyquest_bg.png") %>');
+    background-size: cover;
+    background-position: center;
+  }
+  .btn-overlay {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 52px;
     cursor: pointer;
+    opacity: 0;
   }
-  .btn-pixel:hover { background: #a07820; transform: translateY(-2px); }
-  .btn-pixel.primary { background: #1a6b1a; border-top-color: #2ecc2e; border-left-color: #2ecc2e; border-right-color: #0a3a0a; border-bottom-color: #0a3a0a; }
-  .btn-pixel.primary:hover { background: #228b22; }
-  .version { position: absolute; bottom: 16px; right: 20px; font-family: 'Press Start 2P', monospace; font-size: 8px; color: rgba(255,255,255,0.4); }
-  .copyright { position: absolute; bottom: 16px; left: 20px; font-family: 'Press Start 2P', monospace; font-size: 7px; color: rgba(255,255,255,0.4); }
+  .btn-overlay:hover { opacity: 0.15; background: white; }
 </style>
 
 <div class="game-screen">
-  <div class="logo-main">RUBY<span>QUEST</span></div>
-  <div class="logo-sub">CAMPUS LE WAGON · ACADÉMIE DE CODE</div>
-  <div class="fox">🦊</div>
-  <div class="menu">
-    <%= link_to "⚔ NOUVELLE PARTIE", new_user_registration_path, class: "btn-pixel primary" %>
-    <%= link_to "▶ CONTINUER", new_user_session_path, class: "btn-pixel" %>
-  </div>
-  <div class="copyright">© 2026 RUBYQUEST · LE WAGON</div>
-  <div class="version">V 1.0.0</div>
+  <div class="bg"></div>
+  <%= link_to "NOUVELLE PARTIE", new_user_registration_path, class: "btn-overlay", style: "top: 56%;" %>
+  <%= link_to "CONTINUER", new_user_session_path, class: "btn-overlay", style: "top: 65%;" %>
+</div>
+EOFcat > app/views/pages/home.html.erb << 'EOF'
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { overflow: hidden; }
+  .game-screen {
+    width: 100vw; height: 100vh;
+    position: relative;
+  }
+  .bg {
+    width: 100%; height: 100%;
+    background-image: url('<%= asset_path("rubyquest_bg.png") %>');
+    background-size: cover;
+    background-position: center;
+  }
+  .btn-overlay {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 52px;
+    cursor: pointer;
+    opacity: 0;
+  }
+  .btn-overlay:hover { opacity: 0.2; background: white; border-radius: 4px; }
+</style>
+
+<div class="game-screen">
+  <div class="bg"></div>
+  <%= link_to "NOUVELLE PARTIE", new_user_registration_path, class: "btn-overlay", style: "top: 56%;" %>
+  <%= link_to "CONTINUER", new_user_session_path, class: "btn-overlay", style: "top: 65%;" %>
 </div>
